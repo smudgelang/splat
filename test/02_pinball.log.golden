@@ -1,4 +1,4 @@
-pinball[idle]: Unhandled event "drain"
+pinball{idle[drain]}: Unhandled event
 Sending coin event.
 Starting runtime.
 Current state: idle

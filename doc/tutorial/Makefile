@@ -1,13 +1,11 @@
-SMUDGE ?= stack exec smudge --
+SMUDGE ?= $(shell find ../.. -print | grep 'smudge/.stack-work/install' | grep 'bin/smudge')
 SMEAR_ROOT ?= ../../smear
 SMUDGE_OPTIONS_PNG=--dot-fmt=Png
 CC=gcc
 CFLAGS=-Wall -Werror -Wextra -Wno-unused-parameter -ggdb3
 LFLAGS=-lsmear -pthread -lrt
 
-# This is the path to your libsmear.a. Change it if it's somewhere else.
 LPATH=-L$(SMEAR_ROOT)
-# This is the path to your smear.h. Change it if it's somewhere else.
 IPATH=-I$(SMEAR_ROOT)/include
 
 SMUDGE_FILES=$(basename $(wildcard *.smudge))
