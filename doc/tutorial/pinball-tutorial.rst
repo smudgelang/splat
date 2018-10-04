@@ -574,9 +574,7 @@ side effects. The general syntax for this kind of thing is
 ``destination-machine.event``. If you're sending an event within a
 machine, you can omit the ``destination-machine`` part.
 
-Since *flippers* is a new state machine, our **09_main.c** has to
-invoke the ``SRT_HANDLERS`` macro again for it. Here's an example
-program that uses everything we've seen so far:
+Here's an example program that uses everything we've seen so far:
 
 .. code-block:: c
    :include: 09_main.c
