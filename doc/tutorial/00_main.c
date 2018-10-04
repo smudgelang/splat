@@ -3,8 +3,6 @@
 #include "00_pinball.h"
 #include "00_pinball_ext.h"
 
-SRT_HANDLERS(pinball)
-
 int main(void)
 {
     SRT_init();

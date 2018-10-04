@@ -7,8 +7,6 @@
 #include "07_pinball.h"
 #include "07_pinball_ext.h"
 
-SRT_HANDLERS(pinball)
-
 static int score;
 static int highScore;
 static cancel_token_t timer;

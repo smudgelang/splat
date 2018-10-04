@@ -1,6 +1,6 @@
 SMUDGE ?= $(shell find ../.. -print | grep 'smudge/.stack-work/install' | grep 'bin/smudge')
 SMEAR_ROOT ?= ../../smear
-SMUDGE_OPTIONS_PNG=--dot-fmt=Png
+SMUDGE_OPTIONS_PNG=--dot-fmt=Png --c-smear
 CC=gcc
 CFLAGS=-Wall -Werror -Wextra -Wno-unused-parameter -ggdb3
 LFLAGS=-lsmear -pthread -lrt

@@ -4,8 +4,6 @@
 #include "01_pinball.h"
 #include "01_pinball_ext.h"
 
-SRT_HANDLERS(pinball)
-
 void print_state(void)
 {
     printf("Current state: %s\n", pinball_Current_state_name());

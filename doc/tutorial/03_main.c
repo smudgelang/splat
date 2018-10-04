@@ -4,8 +4,6 @@
 #include "03_pinball.h"
 #include "03_pinball_ext.h"
 
-SRT_HANDLERS(pinball)
-
 void incScore(const pinball_target_t *unused)
 {
     static int score = 0;
