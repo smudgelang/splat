@@ -4,8 +4,6 @@
 #include "04_pinball.h"
 #include "04_pinball_ext.h"
 
-SRT_HANDLERS(pinball)
-
 static int score;
 static int highScore;
 

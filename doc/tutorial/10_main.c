@@ -7,9 +7,6 @@
 #include "10_pinball.h"
 #include "10_pinball_ext.h"
 
-SRT_HANDLERS(pinball)
-SRT_HANDLERS(flippers)
-
 struct pinball_target_t
 {
     int value;
