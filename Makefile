@@ -10,6 +10,9 @@ smudge:
 
 smear: smear/libsmear.a
 
+smudge-splat_%.deb:
+	equivs-build splat-control
+
 tests:
 	cd test && make
 
@@ -17,3 +20,4 @@ clean:
 	cd smear && make clean
 	cd smudge && make clean
 	cd doc/tutorial && make clean
+	rm *.deb
