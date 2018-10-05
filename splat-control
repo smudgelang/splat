@@ -1,0 +1,13 @@
+Section: devel
+Priority: optional
+Standards-Version: 3.9.2
+
+Package: smudge-splat
+Version: 1
+Maintainer: Nathan Michaels <nathan@nmichaels.org>
+Depends: smudge (= 0.7), libsmear-dev (= 0.1)
+Architecture: any
+Copyright: LICENSE
+Description: Smudge Platform: Libraries and Toolchain
+ This is a virtual package that depends on the packages required to
+ use Smudge
