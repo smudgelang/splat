@@ -15,8 +15,7 @@ SPLAT_URL=https://github.com/smudgelang/splat
 POUND=\\\#
 
 .PHONY: smudge smear tests clean all \
-		stage stage_zip stage_tgz package zip exe tgz deb
-		package zip tgz deb doc
+		stage stage_zip stage_tgz package zip exe tgz deb doc
 
 all: smear smudge package
 
