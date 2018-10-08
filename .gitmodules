@@ -1,6 +1,6 @@
 [submodule "smudge"]
 	path = smudge
-	url = git@github.com:smudgelang/smudge.git
+	url = https://github.com/smudgelang/smudge.git
 [submodule "smear"]
 	path = smear
-	url = git@github.com:smudgelang/smear.git
+	url = https://github.com/smudgelang/smear.git
