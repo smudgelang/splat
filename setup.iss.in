@@ -28,5 +28,5 @@ Source: {#MySetupDir}/*; DestDir: "{app}"; Flags: ignoreversion recursesubdirs c
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\Smudge\Smudge"; Filename: "{app}/smudge/smudge.exe"
-Name: "{group}\Smudge\Tutorial"; Filename: "{app}/tutorial/tutorial.pdf"
+Name: "{group}\Smudge"; Filename: "{app}/smudge/smudge.exe"
+Name: "{group}\Tutorial"; Filename: "{app}/tutorial/tutorial.pdf"
