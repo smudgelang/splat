@@ -1,0 +1,33 @@
+sudo: false
+language: generic
+cache:
+  apt: true
+  directories:
+    - $HOME/.stack
+addons:
+  apt:
+    packages:
+      - libgmp-dev
+      - equivs
+      - graphviz
+      - chrpath
+      - fakeroot
+      - devscripts
+os: linux
+before_install:
+- mkdir -p ~/.local/bin
+- export PATH=$HOME/.local/bin:$PATH
+- travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+
+- sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng
+- sudo pip install rst2pdf
+
+install:
+- sudo apt-add-repository -y ppa:jonathonf/debhelper
+- pushd smudge && stack --no-terminal --install-ghc test --only-dependencies && popd
+- sudo apt-get -qq update
+- sudo apt-get install -y debhelper
+
+script:
+- dpkg -l debhelper
+- make all

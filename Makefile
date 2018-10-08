@@ -2,7 +2,7 @@ ifeq ($(OS),Windows_NT)
 PKGEXT=zip
 PLATFORM=windows
 else
-PKGEXT=tgz
+PKGEXT=tgz deb
 PLATFORM=$(shell dpkg --print-architecture)
 endif
 PACKAGE=smudge-platform
@@ -12,15 +12,13 @@ SPLAT_VERSION=$(shell grep "^Version" splat-control | cut -f 2 -d " ")
 .PHONY: smudge smear tests clean all \
 		package zip tgz deb
 
-all: smudge smear
+all: smear smudge package
 
-smear/libsmear.a:
-	cd smear && make
+smear:
+	make -C smear package
 
 smudge:
-	cd smudge && make
-
-smear: smear/libsmear.a
+	make -C smudge package
 
 stage:
 	rm -rf $(SPLAT_RELEASE_STAGE_DIR)
