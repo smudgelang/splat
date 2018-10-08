@@ -10,9 +10,11 @@ SPLAT_BUILD_DIR=build
 SPLAT_RELEASE_SUBDIR=$(PACKAGE)
 SPLAT_RELEASE_STAGE_DIR=$(SPLAT_BUILD_DIR)/$(SPLAT_RELEASE_SUBDIR)
 SPLAT_VERSION=$(shell grep "^Version" splat-control | cut -f 2 -d " ")
+SPLAT_URL=https://github.com/smudgelang/splat
+POUND=\\\#
 
 .PHONY: smudge smear tests clean all \
-		stage stage_zip stage_tgz package zip tgz deb
+		stage stage_zip stage_tgz package zip exe tgz deb
 
 all: smudge smear
 
@@ -54,6 +56,20 @@ $(PACKAGE)_$(SPLAT_VERSION)_$(PLATFORM).zip: stage_zip
 	elif type 7z >/dev/null 2>&1; then \
 	    7z a $@ $(SPLAT_RELEASE_SUBDIR); \
 	fi
+	mv $(SPLAT_BUILD_DIR)/$@ .
+
+$(SPLAT_BUILD_DIR)/setup.iss: setup.iss.in
+	mkdir -p $(SPLAT_BUILD_DIR)
+	@echo $(POUND)define MyAppName      \"Smudge Platform\" > $@
+	@echo $(POUND)define MyAppVersion   \"$(SPLAT_VERSION)\" >>$@
+	@echo $(POUND)define MyAppURL       \"$(SPLAT_URL)\" >>$@
+	@echo $(POUND)define MyOutputDir    \"$(SPLAT_BUILD_DIR)\" >>$@
+	@echo $(POUND)define MySetupDir     \"$(SPLAT_RELEASE_STAGE_DIR)\" >>$@
+	cat $< >>$@
+
+exe: $(PACKAGE)_$(SPLAT_VERSION)_$(PLATFORM).exe
+$(PACKAGE)_$(SPLAT_VERSION)_windows.exe: $(SPLAT_BUILD_DIR)/setup.iss stage_zip
+	ISCC /Q $(SMUDGE_BUILD_DIR_RAW)\setup.iss
 	mv $(SPLAT_BUILD_DIR)/$@ .
 
 tgz: $(PACKAGE)_$(SPLAT_VERSION)_$(PLATFORM).tgz
