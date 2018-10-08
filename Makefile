@@ -9,12 +9,14 @@ PACKAGE=smudge-platform
 SPLAT_BUILD_DIR=build
 SPLAT_RELEASE_SUBDIR=$(PACKAGE)
 SPLAT_RELEASE_STAGE_DIR=$(SPLAT_BUILD_DIR)/$(SPLAT_RELEASE_SUBDIR)
+SPLAT_DOC_STAGE_DIR=smudge-doc/tutorial
 SPLAT_VERSION=$(shell grep "^Version" splat-control | cut -f 2 -d " ")
 SPLAT_URL=https://github.com/smudgelang/splat
 POUND=\\\#
 
 .PHONY: smudge smear tests clean all \
 		stage stage_zip stage_tgz package zip exe tgz deb
+		package zip tgz deb doc
 
 all: smear smudge package
 
@@ -24,12 +26,13 @@ smear:
 smudge:
 	$(MAKE) -C smudge package
 
-stage:
+stage: $(SPLAT_DOC_STAGE_DIR)
 	rm -rf $(SPLAT_RELEASE_STAGE_DIR)
 	mkdir -p $(SPLAT_RELEASE_STAGE_DIR)
 	cp CHANGES $(SPLAT_RELEASE_STAGE_DIR)
 	cp LICENSE $(SPLAT_RELEASE_STAGE_DIR)
 	cp README.md $(SPLAT_RELEASE_STAGE_DIR)
+	cp -r $(SPLAT_DOC_STAGE_DIR) $(SPLAT_RELEASE_STAGE_DIR)
 
 stage_zip: stage
 	$(MAKE) -C smudge zip
@@ -46,6 +49,15 @@ stage_tgz: stage
 	tar -xf ../../smear/libsmear-dev_*_$(PLATFORM).tgz
 
 package: $(foreach EXT,$(PKGEXT),$(PACKAGE)_$(SPLAT_VERSION)_$(PLATFORM).$(EXT))
+
+$(SPLAT_DOC_STAGE_DIR): smudge
+	rm -rf $(SPLAT_DOC_STAGE_DIR)
+	mkdir -p $(SPLAT_DOC_STAGE_DIR)
+	cp doc/tutorial/*.smudge $(SPLAT_DOC_STAGE_DIR)
+	cp doc/tutorial/*.c $(SPLAT_DOC_STAGE_DIR)
+	cp doc/tutorial/Makefile $(SPLAT_DOC_STAGE_DIR)
+	make -C doc/tutorial pinball-tutorial.pdf
+	cp doc/tutorial/pinball-tutorial.pdf $(SPLAT_DOC_STAGE_DIR)
 
 zip: $(PACKAGE)_$(SPLAT_VERSION)_$(PLATFORM).zip
 $(PACKAGE)_$(SPLAT_VERSION)_$(PLATFORM).zip: stage_zip
@@ -94,3 +106,4 @@ clean:
 	$(MAKE) -C doc/tutorial clean
 	rm -rf $(SPLAT_BUILD_DIR)
 	rm -f *.deb *.tgz *.exe *.zip
+	rm -rf $(SPLAT_DOC_STAGE_DIR)
