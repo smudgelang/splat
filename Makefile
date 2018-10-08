@@ -19,10 +19,10 @@ POUND=\\\#
 all: smear smudge package
 
 smear:
-	make -C smear package
+	$(MAKE) -C smear package
 
 smudge:
-	make -C smudge package
+	$(MAKE) -C smudge package
 
 stage:
 	rm -rf $(SPLAT_RELEASE_STAGE_DIR)
@@ -31,15 +31,15 @@ stage:
 	cp README.md $(SPLAT_RELEASE_STAGE_DIR)
 
 stage_zip: stage
-	make -C smudge zip
-	make -C smear zip
+	$(MAKE) -C smudge zip
+	$(MAKE) -C smear zip
 	cd $(SPLAT_RELEASE_STAGE_DIR) && \
 	unzip ../../smudge/smudge-*-*.zip && \
 	unzip ../../smear/libsmear-dev_*_$(PLATFORM).zip
 
 stage_tgz: stage
-	make -C smudge tgz
-	make -C smear tgz
+	$(MAKE) -C smudge tgz
+	$(MAKE) -C smear tgz
 	cd $(SPLAT_RELEASE_STAGE_DIR) && \
 	tar -xf ../../smudge/smudge-*-*.tgz && \
 	tar -xf ../../smear/libsmear-dev_*_$(PLATFORM).tgz
@@ -81,11 +81,11 @@ $(PACKAGE)_$(SPLAT_VERSION)_$(PLATFORM).deb:
 	equivs-build splat-control
 
 tests:
-	cd test && make
+	$(MAKE) -C test
 
 clean:
-	cd smear && make clean
-	cd smudge && make clean
-	cd doc/tutorial && make clean
+	$(MAKE) -C smear clean
+	$(MAKE) -C smudge clean
+	$(MAKE) -C doc/tutorial clean
 	rm -rf $(SPLAT_BUILD_DIR)
 	rm -f *.deb *.tgz *.zip
