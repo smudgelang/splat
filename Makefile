@@ -61,13 +61,13 @@ $(SPLAT_BUILD_DIR)/setup.iss: setup.iss.in
 	@echo $(POUND)define MyAppName      \"Smudge Platform\" > $@
 	@echo $(POUND)define MyAppVersion   \"$(SPLAT_VERSION)\" >>$@
 	@echo $(POUND)define MyAppURL       \"$(SPLAT_URL)\" >>$@
-	@echo $(POUND)define MyOutputDir    \"$(SPLAT_BUILD_DIR)\" >>$@
-	@echo $(POUND)define MySetupDir     \"$(SPLAT_RELEASE_STAGE_DIR)\" >>$@
+	@echo $(POUND)define MyOutputDir    \".\" >>$@
+	@echo $(POUND)define MySetupDir     \"$(SPLAT_RELEASE_SUBDIR)\" >>$@
 	cat $< >>$@
 
 exe: $(PACKAGE)_$(SPLAT_VERSION)_$(PLATFORM).exe
 $(PACKAGE)_$(SPLAT_VERSION)_windows.exe: $(SPLAT_BUILD_DIR)/setup.iss stage_zip
-	ISCC /Q $(SMUDGE_BUILD_DIR_RAW)\setup.iss
+	ISCC /Q $(SPLAT_BUILD_DIR)\setup.iss
 	mv $(SPLAT_BUILD_DIR)/$@ .
 
 tgz: $(PACKAGE)_$(SPLAT_VERSION)_$(PLATFORM).tgz
@@ -88,4 +88,4 @@ clean:
 	$(MAKE) -C smudge clean
 	$(MAKE) -C doc/tutorial clean
 	rm -rf $(SPLAT_BUILD_DIR)
-	rm -f *.deb *.tgz *.zip
+	rm -f *.deb *.tgz *.exe *.zip
