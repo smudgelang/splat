@@ -2,7 +2,7 @@ Section: devel
 Priority: optional
 Standards-Version: 3.9.2
 
-Package: smudge-splat
+Package: smudge_platform
 Version: 1
 Maintainer: Nathan Michaels <nathan@nmichaels.org>
 Depends: smudge (= 0.7), libsmear-dev (= 0.1)
