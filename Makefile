@@ -68,6 +68,10 @@ $(SPLAT_BUILD_DIR)/setup.iss: setup.iss.in
 
 exe: $(PACKAGE)_$(SPLAT_VERSION)_$(PLATFORM).exe
 $(PACKAGE)_$(SPLAT_VERSION)_windows.exe: $(SPLAT_BUILD_DIR)/setup.iss stage_zip
+	cd $(SPLAT_BUILD_DIR) && \
+	tail -n +1 $(SPLAT_RELEASE_SUBDIR)/LICENSE \
+	           $(SPLAT_RELEASE_SUBDIR)/smudge/LICENSE \
+	           $(SPLAT_RELEASE_SUBDIR)/smear/LICENSE > LICENSE
 	ISCC /Q $(SPLAT_BUILD_DIR)\setup.iss
 	mv $(SPLAT_BUILD_DIR)/$@ .
 
