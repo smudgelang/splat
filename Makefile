@@ -5,7 +5,7 @@ else
 PKGEXT=tgz
 PLATFORM=$(shell dpkg --print-architecture)
 endif
-PACKAGE=smudge_platform
+PACKAGE=smudge-platform
 SPLAT_RELEASE_STAGE_DIR=$(PACKAGE)
 SPLAT_VERSION=$(shell grep "^Version" splat-control | cut -f 2 -d " ")
 
