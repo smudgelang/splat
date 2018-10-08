@@ -1,0 +1,51 @@
+# From: https://www.snoyman.com/blog/2016/08/appveyor-haskell-windows-ci
+
+install:
+- git submodule update --init --recursive
+
+before_build:
+# http://help.appveyor.com/discussions/problems/6312-curl-command-not-found
+- mkdir .local\bin
+- cp C:\MinGW\bin\windres.exe .local\bin\
+- set PATH=%CD%\.local\bin;C:\mingw-w64\x86_64-7.3.0-posix-seh-rt_v5-rev0\mingw64\bin;C:\Program Files\Git\mingw64\bin;%PATH%
+
+- curl -sS -ostack.zip -L --insecure http://www.stackage.org/stack/windows-i386
+- 7z e -o.local\bin stack.zip stack.exe
+
+- curl -sS -ographviz.zip -L --insecure https://graphviz.gitlab.io/_pages/Download/windows/graphviz-2.38.zip
+- 7z e -o.local\bin graphviz.zip release\bin
+
+- curl -sS -oinstall-tl.zip -L --insecure http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip
+- 7z x -o.local\ install-tl.zip
+- move .local\install-tl* .local\install-tl
+- echo selected_scheme scheme-minimal> .local\install-tl\profile
+- echo TEXDIR %CD%\.local\tex>> .local\install-tl\profile
+- echo TEXMFLOCAL %CD%\.local\tex\texmf-local>> .local\install-tl\profile
+- echo TEXMFSYSCONFIG %CD%\.local\tex\texmf-config>> .local\install-tl\profile
+- echo TEXMFSYSVAR %CD%\.local\tex\texmf-var>> .local\install-tl\profile
+- echo option_doc ^0>> .local\install-tl\profile
+- echo option_src ^0>> .local\install-tl\profile
+- .local\install-tl\install-tl-windows.bat -portable -no-gui -profile=.local\install-tl\profile <nul
+- set PATH=%CD%\.local\tex\bin\win32;%PATH%
+- tlmgr install amscls amsmath latex-bin listofitems mdwtools readarray semantic tools verbatimbox
+
+- pip install rst2pdf
+
+- curl -sS -oinnosetup.exe -L --insecure http://www.jrsoftware.org/download.php/is.exe
+- .\innosetup.exe /VERYSILENT /DIR=".local\innosetup"
+- set PATH=%CD%\.local\innosetup;%PATH%
+
+clone_folder: "c:\\smudge-platform"
+environment:
+  global:
+    STACK_ROOT: "c:\\sr"
+
+build_script:
+- cd smudge && stack setup > nul && cd ..
+- mingw32-make package
+
+artifacts:
+- path: smudge-platform_*_windows.zip
+  name: Smudge Platform Archive
+- path: smudge-platform_*_windows.exe
+  name: Smudge Platform Installer

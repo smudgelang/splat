@@ -55,7 +55,7 @@ $(SPLAT_DOC_STAGE_DIR): smudge
 	cp doc/tutorial/*.smudge $(SPLAT_DOC_STAGE_DIR)
 	cp doc/tutorial/*.c $(SPLAT_DOC_STAGE_DIR)
 	cp doc/tutorial/Makefile $(SPLAT_DOC_STAGE_DIR)
-	make -C doc/tutorial pinball-tutorial.pdf
+	$(MAKE) -C doc/tutorial pinball-tutorial.pdf
 	cp doc/tutorial/pinball-tutorial.pdf $(SPLAT_DOC_STAGE_DIR)
 
 zip: $(PACKAGE)_$(SPLAT_VERSION)_$(PLATFORM).zip

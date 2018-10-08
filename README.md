@@ -1,3 +1,6 @@
+[![Linux Build Status](https://img.shields.io/travis/com/smudgelang/splat.svg?label=Linux%20build&branch=master)](https://travis-ci.com/smudgelang/splat)
+[![Windows Build Status](https://img.shields.io/appveyor/ci/smudgelang/splat.svg?label=Windows%20Build&branch=master)](https://ci.appveyor.com/project/smudgelang/splat)
+
 # Splat: The Smudge Platform
 
 ## Overview
