@@ -31,3 +31,15 @@ install:
 script:
 - dpkg -l debhelper
 - make all
+
+deploy:
+  provider: releases
+  api_key:
+    secure: JgdKaWMBIU2NCm2l0sXyoGVaWh399T/BPx2/TNUzE9vvHNjpn+EooPlbS1dYztNlhHQqVISmXes4VWzNU/Z+NXL1FIALPsydsJf8A2t9vHWD7vyvLfLSAnHLRebiuhuwuxT4M9hiHlwTJpEYavJRbmMLYfe4GfyCI5Il9DLbbdt8vAmWoMz19cfgzeibC5az52yqLq4KzqnaJyDBcraeAlGq94bS2DNTM1hGQxiqcCVyYFG7Mj0zwHN75pSciLzEnwmDuCON46eEJ3vfvKAKtNNuJC4+gdKEmq5AEAIDKcato/5OD8+KWUgY7VzWiRS/HwEUcS+/T7u4cOYzSVkkIGmdJjcyX5LpUAjuIbfEnA3MFz8hxtoJj3tHVGNQ3Q2zqrX+M0DpMTWAAxRDDFMuv/4Uq7u3QR2kN5SHjCCcnnt7ySV8Pvve0ma9KQQPFZCMHuySiyv4P0qukXH2mazlMi/DowM9KByFmH4EilagWNl/vZEH6NpMPSVGnCmm9PdD5Lus3lgDJdIGomeneTF+LmdAxlZF9d39PAVo5IsN+AaE2jOLDUiKifimfzh+mJsqKW/N6exhXThTpslGTHx7hEryzba01d3UMIfYarSpmvlFZiQvp1RLkgbRj3BaREYaUtp+qX3TNOy6E7d0DCYx1XiT5JE3/momzqzMYHa3Ies=
+  file_glob: true
+  file: smudge-platform_*_*.*
+  skip_cleanup: true
+  on:
+    repo: smudgelang/splat
+    branch: master
+    tags: true

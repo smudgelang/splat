@@ -49,3 +49,11 @@ artifacts:
   name: Smudge Platform Archive
 - path: smudge-platform_*_windows.exe
   name: Smudge Platform Installer
+
+deploy:
+  description:
+  provider: GitHub
+  auth_token:
+    secure: MehfaWvbgQJUN3M+83kTouM4vV4QF2iuowr4DzLkPKzgjebbrVrMD2NvmokdmFp8
+  on:
+    appveyor_repo_tag: true

@@ -1,5 +1,5 @@
 ifeq ($(OS),Windows_NT)
-PKGEXT=zip
+PKGEXT=zip exe
 PLATFORM=windows
 else
 PKGEXT=tgz deb
