@@ -29,4 +29,4 @@ Source: {#MySetupDir}/*; DestDir: "{app}"; Flags: ignoreversion recursesubdirs c
 
 [Icons]
 Name: "{group}\Smudge"; Filename: "{app}/smudge/smudge.exe"
-Name: "{group}\Tutorial"; Filename: "{app}/tutorial/tutorial.pdf"
+Name: "{group}\Tutorial"; Filename: "{app}/tutorial/pinball-tutorial.pdf"
