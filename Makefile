@@ -1,4 +1,4 @@
-CPU_PLAT_RAW=$(shell $(CC) -dumpmachine)
+CPU_PLAT_RAW=$(shell gcc -dumpmachine)
 CPU_RAW=$(shell echo "$(CPU_PLAT_RAW)" | cut -d "-" -f 1)
 CPU_x86_64=amd64
 CPU_i386=i386
@@ -21,7 +21,7 @@ SPLAT_BUILD_DIR=build
 SPLAT_RELEASE_SUBDIR=$(PACKAGE)
 SPLAT_RELEASE_STAGE_DIR=$(SPLAT_BUILD_DIR)/$(SPLAT_RELEASE_SUBDIR)
 SPLAT_DOC_STAGE_DIR=smudge-doc/tutorial
-SPLAT_VERSION=$(shell grep "^Version" splat-control | cut -f 2 -d " ")
+SPLAT_VERSION=$(shell grep "^Version" splat-control | cut -f 2 -d " " | cut -f 1 -d '-')
 SPLAT_URL=https://github.com/smudgelang/splat
 POUND=\\\#
 
