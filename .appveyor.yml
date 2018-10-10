@@ -45,9 +45,9 @@ build_script:
 - mingw32-make package
 
 artifacts:
-- path: smudge-platform_*_windows.zip
+- path: smudge-platform_*_*.zip
   name: Smudge Platform Archive
-- path: smudge-platform_*_windows.exe
+- path: smudge-platform_*_*.exe
   name: Smudge Platform Installer
 
 deploy:
