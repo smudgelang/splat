@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <time.h>
-#include <smear.h>
+#include <smear/smear.h>
 #include "07_pinball.h"
 #include "07_pinball_ext.h"
 

@@ -1,5 +1,5 @@
 /* 00_main.c */
-#include <smear.h>
+#include <smear/smear.h>
 #include "00_pinball.h"
 #include "00_pinball_ext.h"
 

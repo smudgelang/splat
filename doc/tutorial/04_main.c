@@ -1,6 +1,6 @@
 /* 04_main.c */
 #include <stdio.h>
-#include <smear.h>
+#include <smear/smear.h>
 #include "04_pinball.h"
 #include "04_pinball_ext.h"
 

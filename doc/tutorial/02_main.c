@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <smear.h>
+#include <smear/smear.h>
 #include "02_pinball.h"
 #include "02_pinball_ext.h"
 
