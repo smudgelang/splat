@@ -48,7 +48,7 @@ stage_zip: stage
 	$(MAKE) -C smudge zip
 	$(MAKE) -C smear zip
 	cd $(SPLAT_RELEASE_STAGE_DIR) && \
-	unzip ../../smudge/smudge_*-$(TARGET_PLATFORM)_$(TARGET_CPU).zip && \
+	unzip ../../smudge/smudge_*-$(TARGET_PLATFORM)_*.zip && \
 	unzip ../../smear/libsmear-dev_*-$(TARGET_PLATFORM)_$(TARGET_CPU).zip
 
 stage_tgz: stage
