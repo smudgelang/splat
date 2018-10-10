@@ -16,6 +16,10 @@ batteries-included package for development of applications.
 There are binary releases available for Windows and Linux available on
 the [Splat releases page](https://github.com/smudgelang/splat/releases).
 
+Users of Debian and derivatives can add the Smudge package repository
+and keep Splat installations current by following [these
+directions](https://smudgelang.github.io/).
+
 ## Building Splat from Source
 
 First, make sure you have all the prerequisites for Smudge and Smear.
