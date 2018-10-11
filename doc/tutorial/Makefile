@@ -1,12 +1,25 @@
+ifeq ($(OS), Windows_NT)
+WHICH=where
+else
+WHICH=which
 SMUDGE ?= $(shell find ../.. -print | grep 'smudge/.stack-work/install' | grep 'bin/smudge')
-SMEAR_ROOT ?= ../../smear
-SMUDGE_OPTIONS_PNG=--dot-fmt=Png --c-smear
-CC=gcc
-CFLAGS=-Wall -Werror -Wextra -Wno-unused-parameter -ggdb3
-LFLAGS=-lsmear -pthread -lrt
+endif
 
+ifeq ($(SMUDGE),)
+SMUDGE=$(shell $(WHICH) smudge)
+endif
+
+ifeq ($(wildcard /usr/include/smear), "")
+SMEAR_ROOT ?= ../../smear
 LPATH=-L$(SMEAR_ROOT)
 IPATH=-I$(SMEAR_ROOT)/include
+endif
+
+CFLAGS=-Wall -Werror -Wextra -Wno-unused-parameter -ggdb3
+LFLAGS=-lsmear -pthread -lrt
+SMUDGE_OPTIONS_PNG=--dot-fmt=Png --c-smear
+CC=gcc
+
 
 SMUDGE_FILES=$(basename $(wildcard *.smudge))
 TEST_LOGS=$(foreach x, $(SMUDGE_FILES), $(x).log)
@@ -18,9 +31,9 @@ GEN_DOC=$(foreach x, $(ALWAYS_GENERATED), $(addsuffix $(x), $(SMUDGE_FILES)))
 
 .PHONY: clean all default check
 
-default: pinball-tutorial.pdf
+default: all
 
-all: 00_pinball 01_pinball 02_pinball 03_pinball 04_pinball 05_pinball 06_pinball 07_pinball 08_pinball 09_pinball 10_pinball pinball-tutorial.pdf
+all: 00_pinball 01_pinball 02_pinball 03_pinball 04_pinball 05_pinball 06_pinball 07_pinball 08_pinball 09_pinball 10_pinball
 
 %.png %_ext.h %.c %.h: %.smudge
 	$(SMUDGE) $(SMUDGE_OPTIONS_PNG) $^
