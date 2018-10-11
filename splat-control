@@ -3,9 +3,9 @@ Priority: optional
 Standards-Version: 3.9.2
 
 Package: smudge-platform
-Version: 1-linux
+Version: 2-linux
 Maintainer: Nathan Michaels <nathan@nmichaels.org>
-Depends: smudge (= 0.7-linux), libsmear-dev (= 0.1-linux)
+Depends: smudge (= 0.7.1-linux), libsmear-dev (= 0.1.1-linux)
 Architecture: any
 Copyright: LICENSE
 Description: Smudge Platform: Libraries and Toolchain

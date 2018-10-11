@@ -1,3 +1,7 @@
 1: First release:
   * Smudge v0.7
   * Smear v0.1
+
+2: Minor release to fix the tutorial and depend on
+  * Smudge v0.7.1
+  * Smear v0.1.1
